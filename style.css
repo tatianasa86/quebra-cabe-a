@@ -1,0 +1,330 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+
+body {
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.game-container {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.account-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.account-btn {
+  border: 0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  background: #e5e7eb;
+  color: #374151;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2b2b2b;
+}
+
+.level-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.level-option {
+  padding: 9px 6px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.level-option.selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* Tabuleiro Quadrado e Responsivo */
+.board {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  background-color: #e9ecef;
+  border-radius: 12px;
+  padding: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tile {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out, filter 0.15s;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.45);
+  clip-path: polygon(
+    0 8%, 8% 8%, 8% 0, 42% 0, 50% 8%, 58% 0, 92% 0, 92% 8%, 100% 8%,
+    100% 42%, 92% 50%, 100% 58%, 100% 92%, 92% 92%, 92% 100%, 58% 100%,
+    50% 92%, 42% 100%, 8% 100%, 8% 92%, 0 92%, 0 58%, 8% 50%, 0 42%
+  );
+}
+
+.tile:active {
+  transform: scale(0.97);
+}
+
+.tile.empty {
+  background: transparent !important;
+  cursor: default;
+  box-shadow: none;
+}
+
+.board.solved .tile {
+  animation: piece-snap 0.35s ease-out both;
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: none;
+}
+
+@keyframes piece-snap {
+  0% {
+    transform: scale(0.96);
+    filter: brightness(1.2);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.image-picker {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+.image-option {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  padding: 2px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #e5e7eb;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.image-option.selected {
+  border-color: #3b82f6;
+}
+
+.image-option img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.ranking {
+  width: 100%;
+  margin-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+}
+
+.ranking-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ranking h2 {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+}
+
+#ranking-level {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.ranking-list {
+  list-style-position: inside;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.ranking-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.ranking-empty {
+  color: #6c757d;
+  font-size: 0.85rem;
+  list-style: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(17, 24, 39, 0.45);
+  z-index: 10;
+}
+
+.login-box {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  width: min(100%, 320px);
+  padding: 24px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.login-box h2 {
+  margin-bottom: 4px;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+}
+
+.login-box label {
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}

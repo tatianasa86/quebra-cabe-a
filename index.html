@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quebra-Cabeça Deslizante</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h1>Quebra-Cabeça Deslizante</h1>
+
+    <div class="account-bar">
+      <span id="user-status">Visitante</span>
+      <button id="login-btn" class="account-btn" type="button">Entrar</button>
+      <button id="logout-btn" class="account-btn hidden" type="button">Sair</button>
+    </div>
+
+    <!-- Controles de Estatísticas -->
+    <div class="stats-bar">
+      <div class="stat-box">
+        <span class="label">Movimentos:</span>
+        <span id="moves" class="value">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="label">Tempo:</span>
+        <span id="timer" class="value">00:00</span>
+      </div>
+    </div>
+
+    <div class="level-picker" aria-label="Escolha o nível">
+      <button class="level-option selected" type="button" data-size="3">Fácil</button>
+      <button class="level-option" type="button" data-size="4">Médio</button>
+      <button class="level-option" type="button" data-size="5">Difícil</button>
+    </div>
+
+    <!-- Tabuleiro do Jogo -->
+    <div id="board" class="board"></div>
+
+    <!-- Imagens disponíveis -->
+    <div class="image-picker" aria-label="Escolha uma imagem">
+      <button class="image-option selected" type="button" data-image="imagem1.jpg" aria-label="Usar imagem 1">
+        <img src="imagem1.jpg" alt="Imagem 1" />
+      </button>
+      <button class="image-option" type="button" data-image="imagem 2.jpg" aria-label="Usar imagem 2">
+        <img src="imagem 2.jpg" alt="Imagem 2" />
+      </button>
+      <button class="image-option" type="button" data-image="imagem, 5.jpg" aria-label="Usar imagem 3">
+        <img src="imagem, 5.jpg" alt="Imagem 3" />
+      </button>
+      <button class="image-option" type="button" data-image="imagem4.jpg" aria-label="Usar imagem 4">
+        <img src="imagem4.jpg" alt="Imagem 4" />
+      </button>
+      <button class="image-option" type="button" data-image="Gemini_Generated_Image_w3cykqw3cykqw3cy.jpg" aria-label="Usar imagem 5">
+        <img src="Gemini_Generated_Image_w3cykqw3cykqw3cy.jpg" alt="Imagem 5" />
+      </button>
+    </div>
+
+    <!-- Controles de Ação e Upload -->
+    <div class="controls">
+      <label for="image-upload" class="btn btn-secondary">
+        📷 Usar Minha Foto
+      </label>
+      <input type="file" id="image-upload" accept="image/*" hidden />
+
+      <button id="restart-btn" class="btn btn-primary">
+        🔄 Reiniciar Jogo
+      </button>
+    </div>
+
+    <section class="ranking" aria-labelledby="ranking-title">
+      <div class="ranking-heading">
+        <h2 id="ranking-title">Ranking</h2>
+        <span id="ranking-level">Fácil</span>
+      </div>
+      <ol id="ranking-list" class="ranking-list"></ol>
+    </section>
+  </div>
+
+  <div id="login-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="login-title">
+    <form id="login-form" class="login-box">
+      <button id="close-login" class="close-btn" type="button" aria-label="Fechar">×</button>
+      <h2 id="login-title">Entrar no ranking</h2>
+      <label for="username">Seu nome</label>
+      <input id="username" name="username" type="text" maxlength="18" autocomplete="nickname" required />
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" minlength="4" autocomplete="current-password" required />
+      <button class="btn btn-primary" type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script src="scrypt.js"></script>
+</body>
+</html>                                                                                                                                                                                                                                                   
